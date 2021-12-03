@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Inputfield = ({ text, setText, addTodo }) => {
+const Inputfield = ({ text, setText, submitHandler }) => {
   return (
     <label>
       <input
@@ -8,7 +8,7 @@ const Inputfield = ({ text, setText, addTodo }) => {
         placeholder='Что еще нужно сделать?'
         onChange={(e) => setText(e.target.value)}
       />
-      <button onClick={addTodo}>Добавить к списку</button>
+      <button onClick={submitHandler}>Добавить к списку</button>
     </label>
   );
 }
