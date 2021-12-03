@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import './App.css';
+import Todolist from './components/todoList';
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -44,17 +45,7 @@ function App() {
         />
         <button onClick={addTodo}>Добавить к списку</button>
       </label>
-      <ul>
-        {todos.map(el => {
-          return (
-            <li key={el.id}>
-              <input type="checkbox" checked={el.isCompleted} onChange={() => { doneTodos(el.id) }} />
-              <span>{el.text}</span>
-              <span onClick={() => removeTodo(el.id)}>&times;</span>
-            </li>
-          )
-        })}
-      </ul>
+      <Todolist todos={todos} removeTodo={removeTodo} doneTodos={doneTodos} />
     </div>
   );
 }
