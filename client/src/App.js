@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import './App.css';
+import Inputfield from './components/inputField';
 import Todolist from './components/todoList';
 
 function App() {
@@ -37,14 +38,7 @@ function App() {
 
   return (
     <div className="App">
-      <label>
-        <input
-          value={text}
-          placeholder='Что еще нужно сделать?'
-          onChange={(e) => setText(e.target.value)}
-        />
-        <button onClick={addTodo}>Добавить к списку</button>
-      </label>
+      <Inputfield text={text} setText={setText} addTodo={addTodo} />
       <Todolist todos={todos} removeTodo={removeTodo} doneTodos={doneTodos} />
     </div>
   );
