@@ -1,31 +1,27 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import './App.css';
 import Inputfield from './components/inputField';
 import Todolist from './components/todoList';
 
-import { addTodo } from './store/todoSlice';
+import { addTodo, fetchTodo } from './store/todoSlice';
 
 function App() {
   const dispatch = useDispatch();
-  const [text, setText] = useState('');
+  const [title, setTitle] = useState('');
   const addTask = () => {
-    dispatch(addTodo({ text }));
-    setText('');
+    dispatch(addTodo({ title }));
+    setTitle('');
   }
-  // const doneTodos = (id) => {
-  //   setTodos(todos.map(e => {
-  //     if (e.id !== id) {
-  //       return e;
-  //     }
-  //     return { ...e, isCompleted: !e.isCompleted }
-  //   }));
-  // };
+
+  useEffect(() => {
+    dispatch(fetchTodo());
+  }, [dispatch]);
 
   return (
     <div className="App">
-      <Inputfield text={text} setText={setText} submitHandler={addTask} />
+      <Inputfield title={title} settitle={setTitle} submitHandler={addTask} />
       <Todolist />
     </div>
   );
