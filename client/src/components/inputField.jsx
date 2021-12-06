@@ -1,6 +1,8 @@
 import React from 'react';
-
-const Inputfield = ({ title, setTitle, submitHandler }) => {
+import { useDispatch } from 'react-redux';
+import { addNewTodo } from '../store/todoSlice';
+const Inputfield = ({ title, setTitle }) => {
+  const dispatch = useDispatch();
   return (
     <label>
       <input
@@ -8,7 +10,7 @@ const Inputfield = ({ title, setTitle, submitHandler }) => {
         placeholder='Что еще нужно сделать?'
         onChange={(e) => setTitle(e.target.value)}
       />
-      <button onClick={submitHandler}>Добавить к списку</button>
+      <button onClick={() => dispatch(addNewTodo({ title }))}>Добавить к списку</button>
     </label>
   );
 }
